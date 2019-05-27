@@ -1,0 +1,35 @@
+.full-width {
+    width: 95%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.half-width {
+    width: 40%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.form-size {
+    width: 75%;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 0;
+}
+
+.avatar {
+    padding-top: 0;
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+}
+.notice {
+    display: flex;
+    vertical-align: middle;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.space {
+    margin-left: 10px;
+    margin-right: 10px; 
+}

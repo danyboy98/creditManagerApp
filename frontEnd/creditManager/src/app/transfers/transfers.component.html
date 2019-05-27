@@ -1,0 +1,45 @@
+<div fxFlex fxFlexOffset="20px" class="form-size">
+  <div *ngIf="user">
+    <img src="{{BaseURL + user.profile}}" alt="{{user.name}}" class="avatar">
+    <hr>
+    <h2>{{ user.name }}</h2>
+    <p>Credit:  {{user.credit}}</p>
+  </div>
+  <div [hidden]="stop">
+    <h3>Enter the transfer details</h3>
+    <form [formGroup]="transferForm" novalidate #tform="ngForm">
+      <div formArrayName="recepients">
+        <div *ngFor="let recepient of recepients.controls; let i=index" [formGroupName]="i">
+
+          <mat-form-field class="half-width">
+            <input matInput placeholder="Full Name" formControlName="name">
+            <mat-error *ngIf="formErrors[i].name">{{formErrors[i].name}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <input matInput placeholder="Amount" formControlName="amount">
+            <mat-error *ngIf="formErrors[i].amount">{{formErrors[i].amount}}</mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button class="background-primary text-floral-white" style="margin-top: 20px"
+            (click)="deleteRecepient(i)" [disabled]="recepients.length===1">Delete Recepient</button>
+
+        </div>
+
+      </div>
+
+      <button mat-raised-button color="primary" class="background-primary text-floral-white" style="margin-top: 20px"
+        (click)="addRecepient()" [disabled]="tform.pristine || tform.invalid">Add Recepient</button>
+    </form>
+    <div>
+    <button mat-raised-button color="primary" class="background-primary text-floral-white space" style="margin-top: 20px"
+      [disabled]="tform.pristine || tform.invalid" (click)="onSubmit()">Submit</button>
+    <button mat-raised-button color="primary" class="space" (click)="goBack()">Back</button>
+    </div>
+  </div>
+  <div class="notice" *ngIf="stop">
+    <div><h2>You have gone over your balance or You may have entered yourself in the receivers List</h2></div>
+    <div><button mat-raised-button class="background-primary text-floral-white" style="margin-top: 20px"
+      (click)="tryAgain()">Try Again</button></div>
+  </div>
+</div>
